@@ -79,7 +79,7 @@ public class MainApplication {
 				exitApplication = true;
 				break;
 			default:
-				System.out.println("Please enter appropriate input fro.m the menu listed above");
+				System.out.println("Please enter appropriate input from the menu listed above");
 			}
 		} while (!exitApplication);
 		userInput.close();
