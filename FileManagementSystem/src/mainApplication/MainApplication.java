@@ -18,23 +18,23 @@ public class MainApplication {
 			System.out.println("3. Exit");
 			System.out.println("Please enter an option:-");
 			Scanner userInput = new Scanner(System.in);
-			Integer menuSelected = Integer.parseInt(userInput.nextLine());
+			String menuSelected = userInput.nextLine();
 			System.out.println("Menu Selected:-" + menuSelected);
 
 			switch (menuSelected) {
 
-			case 1:
+			case "1":
 				System.out.println("Display existing file names");
 				fileOpMgmtinst.displayExistingFiles();
 				break;
-			case 2:
+			case "2":
 				System.out.println("Please enter the operation to be performed");
 				System.out.println(" 1. Add file");
 				System.out.println(" 2. Delete file");
 				System.out.println(" 3. Search file");
 				System.out.println(" 4. Back to main menu");
-				Integer operationSelected = Integer.parseInt(userInput.nextLine());
-				if (operationSelected.equals(new Integer(1))) {
+				String operationSelected = userInput.nextLine();
+				if (operationSelected.equals("1")) {
 					System.out.println("Please enter the file name");
 					String fileName = userInput.nextLine();
 					System.out.println("Please enter the content to be written to file");
@@ -47,7 +47,7 @@ public class MainApplication {
 						e.printStackTrace();
 					}
 					break;
-				} else if (operationSelected.equals(new Integer(2))) {
+				} else if (operationSelected.equals("2")) {
 					System.out.println("Please enter the file name to be deleted");
 					String fileNameToBeDeleted = userInput.nextLine();
 					String message;
@@ -59,21 +59,23 @@ public class MainApplication {
 						e.printStackTrace();
 					}
 					
-					break;
-				} else if (operationSelected.equals(new Integer(3))) {
+//					break;
+				} else if (operationSelected.equals("3")) {
 					System.out.println("Please enter the file name to be searched");
 					String fileNameToBeSearched = userInput.nextLine();
 					String message = fileOpMgmtinst.searchUserSpecifiedFile(fileNameToBeSearched);
 					System.out.println(message);
-					break;
-				} else if (operationSelected.equals(new Integer(4))) {
+//					break;
+				} else if (operationSelected.equals("4")) {
 					break;
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.println("Exit");
 				exitApplication = true;
 				break;
+			default:
+				System.out.println("Please enter appropriate input from the menu listed above");
 			}
 		} while (!exitApplication);
 

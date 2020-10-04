@@ -75,7 +75,7 @@ public class FileOperationsManagementImpl implements FileOperationsManagementInt
 		String[] fileArr=folder.list();
 		Set<String>setOfFileNames = new HashSet<>(Arrays.asList(fileArr));
 		Boolean fileFound=setOfFileNames.contains(fileNameToBeSearched);
-		File fileObj = new File(System.getProperty("user.dir") + "/src/root/" + fileNameToBeSearched);
+
 		if (fileFound)
 		{
 		    message="Specified file has been found.";
