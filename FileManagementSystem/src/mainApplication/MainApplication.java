@@ -10,16 +10,18 @@ public class MainApplication {
 
 	public static void main(String[] args) {
 
+		System.out.println("Welcome to File Management System");
+
 		FileOperationsManagementInterface fileOpMgmtinst = new FileOperationsManagementImpl();
 		boolean exitApplication = false;
+		Scanner userInput = new Scanner(System.in);
 		do {
+			System.out.println("**********************************************");
 			System.out.println("1. Display existing file names ");
 			System.out.println("2. Add/Delete/Search a file");
 			System.out.println("3. Exit");
 			System.out.println("Please enter an option:-");
-			Scanner userInput = new Scanner(System.in);
 			String menuSelected = userInput.nextLine();
-			System.out.println("Menu Selected:-" + menuSelected);
 
 			switch (menuSelected) {
 
@@ -28,6 +30,9 @@ public class MainApplication {
 				fileOpMgmtinst.displayExistingFiles();
 				break;
 			case "2":
+				boolean exitLoop = true;
+				do{
+				System.out.println("---------------------------------------------");	
 				System.out.println("Please enter the operation to be performed");
 				System.out.println(" 1. Add file");
 				System.out.println(" 2. Delete file");
@@ -37,16 +42,13 @@ public class MainApplication {
 				if (operationSelected.equals("1")) {
 					System.out.println("Please enter the file name");
 					String fileName = userInput.nextLine();
-					System.out.println("Please enter the content to be written to file");
-					String content = userInput.nextLine();
 					try {
-						String message = fileOpMgmtinst.addFileToDirectory(fileName,content);
+						String message = fileOpMgmtinst.addFileToDirectory(fileName,userInput);
 						System.out.println(message);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					break;
 				} else if (operationSelected.equals("2")) {
 					System.out.println("Please enter the file name to be deleted");
 					String fileNameToBeDeleted = userInput.nextLine();
@@ -59,25 +61,27 @@ public class MainApplication {
 						e.printStackTrace();
 					}
 					
-//					break;
 				} else if (operationSelected.equals("3")) {
 					System.out.println("Please enter the file name to be searched");
 					String fileNameToBeSearched = userInput.nextLine();
 					String message = fileOpMgmtinst.searchUserSpecifiedFile(fileNameToBeSearched);
 					System.out.println(message);
-//					break;
+
 				} else if (operationSelected.equals("4")) {
-					break;
+					exitLoop = false;
+				}else  {
+					System.out.println("Please enter proper values as per listing shown above");	
 				}
+				}while(exitLoop);
 				break;
 			case "3":
 				System.out.println("Exit");
 				exitApplication = true;
 				break;
 			default:
-				System.out.println("Please enter appropriate input from the menu listed above");
+				System.out.println("Please enter appropriate input fro.m the menu listed above");
 			}
 		} while (!exitApplication);
-
+		userInput.close();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -30,12 +31,14 @@ public class FileOperationsManagementImpl implements FileOperationsManagementInt
 	}
 
 	@Override
-	public String addFileToDirectory(String fileName, String content) throws IOException {
+	public String addFileToDirectory(String fileName, Scanner userInput) throws IOException {
 		// TODO Auto-generated method stub
 		File file = new File(System.getProperty("user.dir") + "/src/root/" + fileName);
 		if (file.exists()) {
 			return "File already exists.";
 		} else {
+			System.out.println("Please enter the content to be written to file");
+			String content = userInput.nextLine();
 			file.createNewFile();
 			Path path = Paths.get((System.getProperty("user.dir") + "/src/root/" + fileName));
 			Files.write(Paths.get(path.toUri()), content.getBytes(), StandardOpenOption.APPEND);
@@ -52,7 +55,7 @@ public class FileOperationsManagementImpl implements FileOperationsManagementInt
 		File fileObj = new File(System.getProperty("user.dir") + "/src/root/" + fileNameToBeDeleted);
 		if (fileObj.exists() && fileObj.getCanonicalFile().getName().equals(fileObj.getName())) {
 			boolean fileDeleteFlag = fileObj.delete();
-			System.out.println("Flag:-" + fileDeleteFlag);
+//			System.out.println("Flag:-" + fileDeleteFlag);
 			if (fileDeleteFlag) {
 				response = "File has been deleted";
 			} else {
